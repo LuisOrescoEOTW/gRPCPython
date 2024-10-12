@@ -1,0 +1,19 @@
+//temperature.proto
+syntax = "proto3";
+
+package temperature;
+
+message TemperatureRequest {
+    string city_code = 1;
+}
+
+message TemperatureResponse {
+    repeated float temperatures = 1;
+}
+
+service TemperatureService {
+    rpc uno_uno(TemperatureRequest) returns (TemperatureResponse);
+    rpc uno_muchos(TemperatureRequest) returns (stream TemperatureResponse);
+    rpc muchos_uno(stream TemperatureRequest) returns (TemperatureResponse);
+    rpc muchos_muchos(stream TemperatureRequest) returns (stream TemperatureResponse);
+}
